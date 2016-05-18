@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>FIND YOUR WAY - City editor</title>
+		<meta charset="utf-8" />
+
+		<link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script type="text/javascript" src="findyourwayweb.js"></script>
+	</head>
+	<body>
+			<p>View or edit a city</p>
+
+			<label for="city_id">Podaj numer ID: </label>
+			<input type="text" id="city_id" placeholder="ID" />
+
+			<form action='http://edi.iem.pw.edu.pl/pijaginw/findyourwayapp/city/{{ cityID }}' method='POST'>
+				<ul>
+					<li>
+						<input type="checkbox" id="chbox_name" name="chboxCity" />nazwa miasta<br />
+						<input type="checkbox" id="chbox_short" name="chboxCity" />skrocona nazwa miasta<br />
+						<input type="checkbox" id="chbox_connections" name="chboxCity" />polaczenia z miastem<br />
+					</li>
+					<li id="chbox_name">
+						<label for="new_name">Nowa nazwa miasta: </label>
+						<input type="text" id="new_name" placeholder="Nazwa"/>
+					</li>
+					<li id="chbox_short">
+						<label for="new_short">Nowa skrocona nazwa miasta: </label>
+						<input type="text" id="new_short" placeholder="Skrot"/>
+					</li>
+					<li id="chbox_connections">
+						<label for="new_connections">Nowe polaczenia: </label>
+						<input type="text" id="new_connections" placeholder="Polaczenia"/>
+					</li>
+					<p><button type='button'>Edit</button></p>
+					<p id='responseP'></p>
+				</ul>
+			</form>
+	</body>
+</html>

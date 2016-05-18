@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<head>
+	<meta charset='utf-8'>
+	<title>FIND YOUR WAY - Connection editor</title>
+
+	<link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+
+	<style>
+		body {
+			font: 16px 'Muli', sans-serif;
+			background-color: white;
+			margin: 2%;
+		}
+		.mainDiv {
+			background-color: #ffe6cc;
+			border-radius: 10px;
+			padding: 2%;
+			width: 50%;
+			word-wrap: break-word;
+			overflow: auto;
+		}
+		header {
+			font-size: 1.3em;
+			margin-top: 5%;
+			margin-bottom: 2%;
+		}
+		.content {
+			width: 70%;
+			float: left;
+		}
+		.sideMenu {
+			margin-left: 70%;
+			margin-top: 1px;
+			width: 30%;
+			text-align: center;
+		}
+		.menuList li {
+			border-bottom: 2px solid #ffa84d;
+			margin-top: 5px;
+		}
+		.pHeader {
+			font-size: .9em;
+			font-weight: bold;
+		}
+		ul li {
+			list-style-type: none;
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="mainDiv">
+		<header>Edit/delete connection between two cities:</header>
+		<div class="content">
+			<form action="http://edi.iem.pw.edu.pl/pijaginw/findyourwayapp/connections" method="POST">
+				<p class="pHeader">Edit connection:</p>
+				<ul>
+					<li>
+						<label for='cityFrom'>Between: </label>
+						<select name="cityFrom">
+							{% for item in cities %}
+								<option value="{{ item['short'] }}">{{ item['name'] }}</option>
+							{% endfor %}
+						</select>
+					</li>
+					<li>
+						<label for='cityTo'>... and: </label>
+						<select name="cityTo">
+							{% for item in cities %}
+								<option value="{{ item['short'] }}">{{ item['name'] }}</option>
+							{% endfor %}
+						</select>
+					</li>
+					<li>
+						<label for='newValue'>New value: </label>
+						<input type='text' name='newValue' id='newValue' placeholder="new value"/>
+					</li>
+					<li><input type='submit' value='Edit connection'/></li>
+				</ul>
+			</form>
+			<form action="http://edi.iem.pw.edu.pl/pijaginw/findyourwayapp/connections_delete" method="POST">
+				<p class="pHeader">Delete connection:</p>
+				<ul>
+					<li>
+						<label for='cityFromDel'>Between: </label>
+						<select name="cityFromDel">
+							{% for item in cities %}
+								<option value="{{ item['short'] }}">{{ item['name'] }}</option>
+							{% endfor %}
+						</select>
+					</li>
+					<li>
+						<label for='cityToDel'>... and: </label>
+						<select name="cityToDel">
+							{% for item in cities %}
+								<option value="{{ item['short'] }}">{{ item['name'] }}</option>
+							{% endfor %}
+						</select>
+					</li>
+					<li><input type='submit' value='Delete connection'/></li>
+				</ul>
+			</form>
+		</div>
+		<div class="sideMenu">
+			<ul class="menuList">
+				<li><p><a href="http://edi.iem.pw.edu.pl/pijaginw/findyourwayapp/">Find a path</a></p></li>
+				<li><p><a href="http://edi.iem.pw.edu.pl/pijaginw/findyourwayapp/cities">All cities</a></p></li>
+				<li><p><a href="http://edi.iem.pw.edu.pl/pijaginw/findyourwayapp/city">Add new city</a></p></li>
+				<li><p><a href="http://edi.iem.pw.edu.pl/pijaginw/findyourwayapp/connections">Edit/delete connection</a></p></li>
+			</ul>
+		</div>
+	</div>
+</body>

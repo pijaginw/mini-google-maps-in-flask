@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>FIND YOUR WAY - City</title>
+		<meta charset="utf-8" />
+
+		<link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+
+		<style>
+			body {
+				font: 16px 'Muli', sans-serif;
+				background-color: white;
+				margin: 2%;
+			}
+			.mainDiv {
+				background-color: #ffe6cc;
+				border-radius: 10px;
+				padding: 2%;
+				width: 50%;
+				word-wrap: break-word;
+				overflow: auto;
+			}
+			header {
+				font-size: 1.2em;
+				margin-top: 5%;
+				margin-bottom: 2%;
+				font-weight: bold;
+			}
+			.content {
+				width: 70%;
+				float: left;
+			}
+			.sideMenu {
+				margin-left: 70%;
+				margin-top: 1px;
+				width: 30%;
+				text-align: center;
+			}
+			.menuList li {
+				border-bottom: 2px solid #ffa84d;
+				margin-top: 5px;
+			}
+			ul li {
+				list-style-type: none;
+				margin: 10px;
+			}
+			.connectionsList li {
+				list-style-type: square;
+			}
+			.pHeader {
+				font-size: .9em;
+				font-weight: bold;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div class="mainDiv">
+			<header>{{ name }}</header>
+
+			<p>City ID: {{ cityID }}</p>
+			<p>Short name: {{ short }}</p>
+			<p>Connections:</p>
+			<ul class="connectionsList">
+				{% for item in data['connections'] %}
+					<li>destination: {{ item['dest'] }}, distance: {{ item['dist'] }}km</li>
+				{% endfor %}
+			</ul>
+			<div class="content">
+				<p class="pHeader">Edit the city:</p>
+				<form action="http://edi.iem.pw.edu.pl/pijaginw/findyourwayapp/city/{{ cityID }}" method="POST">
+					<ul>
+						<li>
+							<label for="new_name">Nowa nazwa miasta: </label>
+							<input type="text" id="new_name" name="new_name" placeholder="Nazwa"/>
+						</li>
+						<li>
+							<label for="new_connections">Nowe polaczenia: </label>
+							<input type="text" id="new_connections" name="new_connections" placeholder="Polaczenia"/>
+						</li>
+						<p><button type='submit'>Edit</button></p>
+						<p id='responseP'></p>
+					</ul>
+				</form>
+				<form action="http://edi.iem.pw.edu.pl/pijaginw/findyourwayapp/city_del/{{ cityID }}" method="POST">
+					<p class="pHeader">Remove the city:</p>
+					<button type='submit'>Remove</p>
+				</form>
+			</div>
+			<div class="sideMenu">
+				<ul class="menuList">
+					<li><p><a href="http://edi.iem.pw.edu.pl/pijaginw/findyourwayapp/">Find a path</a></p></li>
+					<li><p><a href="http://edi.iem.pw.edu.pl/pijaginw/findyourwayapp/cities">All cities</a></p></li>
+					<li><p><a href="http://edi.iem.pw.edu.pl/pijaginw/findyourwayapp/city">Add new city</a></p></li>
+					<li><p><a href="http://edi.iem.pw.edu.pl/pijaginw/findyourwayapp/connections">Edit/delete connection</a></p></li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
